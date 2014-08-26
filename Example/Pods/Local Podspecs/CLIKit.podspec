@@ -10,16 +10,21 @@
 Pod::Spec.new do |s|
   s.name             = "CLIKit"
   s.version          = "0.1.0"
-  s.summary          = "Tools to help you build Cocoa command-line applications"
+  s.summary          = "A short description of CLIKit."
   s.description      = <<-DESC
-			Tools to help you build Cocoa command-line applications
+                       An optional longer description of CLIKit
+
+                       * Markdown format.
+                       * Don't worry about the indent, we strip it!
                        DESC
-  s.homepage         = "https://github.com/umjames/CLIKit"
+  s.homepage         = "https://github.com/<GITHUB_USERNAME>/CLIKit"
+  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Michael James" => "umjames29@gmail.com" }
-  s.source           = { :git => "https://github.com/umjames/CLIKit.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/CLIKit.git", :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :osx, '10.9'
+  s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes'

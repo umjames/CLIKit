@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/cocoapods/l/CLIKit.svg?style=flat)](http://cocoadocs.org/docsets/CLIKit)
 [![Platform](https://img.shields.io/cocoapods/p/CLIKit.svg?style=flat)](http://cocoadocs.org/docsets/CLIKit)
 
+## Description
+
+Tools to help you build Cocoa command-line applications
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
