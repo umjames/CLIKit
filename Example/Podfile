@@ -1,0 +1,7 @@
+
+target 'CLIKit', :exclusive => true do
+  pod "CLIKit", :path => "../"
+
+  pod 'Specta', '~> 0.2.1'
+  pod 'Expecta'
+end
