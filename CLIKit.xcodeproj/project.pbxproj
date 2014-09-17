@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		71EAA5D75D09450DA90C3CA9 /* libPods-CLIKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C18454424D4877AD20093B /* libPods-CLIKitTests.a */; };
+		FD68A76419C94E9500684EA2 /* CLIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FD68A76019C94E9500684EA2 /* CLIKit.h */; };
+		FD68A76619C94E9500684EA2 /* CLIOptionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = FD68A76219C94E9500684EA2 /* CLIOptionParser.h */; };
+		FD68A76719C94E9500684EA2 /* CLIOptionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68A76319C94E9500684EA2 /* CLIOptionParser.m */; };
+		FD68A76919C94EF100684EA2 /* CLIOptionParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68A76819C94EF100684EA2 /* CLIOptionParserTest.m */; };
+		FD68A76C19C9506900684EA2 /* CLIOptionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68A76319C94E9500684EA2 /* CLIOptionParser.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		41C18454424D4877AD20093B /* libPods-CLIKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CLIKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F63A108E11DE4D50A217F6F6 /* Pods-CLIKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLIKitTests.xcconfig"; path = "Pods/Pods-CLIKitTests.xcconfig"; sourceTree = "<group>"; };
+		FD68A74C19C94D4F00684EA2 /* libCLIKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCLIKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD68A75619C94D5000684EA2 /* CLIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CLIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD68A75919C94D5000684EA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD68A76019C94E9500684EA2 /* CLIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIKit.h; sourceTree = "<group>"; };
+		FD68A76219C94E9500684EA2 /* CLIOptionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIOptionParser.h; sourceTree = "<group>"; };
+		FD68A76319C94E9500684EA2 /* CLIOptionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIOptionParser.m; sourceTree = "<group>"; };
+		FD68A76819C94EF100684EA2 /* CLIOptionParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIOptionParserTest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FD68A74919C94D4F00684EA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD68A75319C94D5000684EA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71EAA5D75D09450DA90C3CA9 /* libPods-CLIKitTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9B43AA8FB27F464BA41646F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41C18454424D4877AD20093B /* libPods-CLIKitTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FD68A72519C9466500684EA2 = {
+			isa = PBXGroup;
+			children = (
+				FD68A74D19C94D5000684EA2 /* CLIKit */,
+				FD68A75719C94D5000684EA2 /* CLIKitTests */,
+				FD68A72F19C9466500684EA2 /* Products */,
+				F63A108E11DE4D50A217F6F6 /* Pods-CLIKitTests.xcconfig */,
+				9B43AA8FB27F464BA41646F1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FD68A72F19C9466500684EA2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FD68A74C19C94D4F00684EA2 /* libCLIKit.a */,
+				FD68A75619C94D5000684EA2 /* CLIKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FD68A74D19C94D5000684EA2 /* CLIKit */ = {
+			isa = PBXGroup;
+			children = (
+				FD68A76019C94E9500684EA2 /* CLIKit.h */,
+				FD68A76219C94E9500684EA2 /* CLIOptionParser.h */,
+				FD68A76319C94E9500684EA2 /* CLIOptionParser.m */,
+			);
+			path = CLIKit;
+			sourceTree = "<group>";
+		};
+		FD68A75719C94D5000684EA2 /* CLIKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				FD68A75819C94D5000684EA2 /* Supporting Files */,
+				FD68A76819C94EF100684EA2 /* CLIOptionParserTest.m */,
+			);
+			path = CLIKitTests;
+			sourceTree = "<group>";
+		};
+		FD68A75819C94D5000684EA2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FD68A75919C94D5000684EA2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FD68A74A19C94D4F00684EA2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD68A76419C94E9500684EA2 /* CLIKit.h in Headers */,
+				FD68A76619C94E9500684EA2 /* CLIOptionParser.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FD68A74B19C94D4F00684EA2 /* CLIKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD68A75A19C94D5000684EA2 /* Build configuration list for PBXNativeTarget "CLIKit" */;
+			buildPhases = (
+				FD68A74819C94D4F00684EA2 /* Sources */,
+				FD68A74919C94D4F00684EA2 /* Frameworks */,
+				FD68A74A19C94D4F00684EA2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CLIKit;
+			productName = CLIKit;
+			productReference = FD68A74C19C94D4F00684EA2 /* libCLIKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FD68A75519C94D5000684EA2 /* CLIKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD68A75D19C94D5000684EA2 /* Build configuration list for PBXNativeTarget "CLIKitTests" */;
+			buildPhases = (
+				3CAF1ACEFA2F438EAC6FADF3 /* Check Pods Manifest.lock */,
+				FD68A75219C94D5000684EA2 /* Sources */,
+				FD68A75319C94D5000684EA2 /* Frameworks */,
+				FD68A75419C94D5000684EA2 /* Resources */,
+				5A089899E1E74170A43FC89A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CLIKitTests;
+			productName = CLIKitTests;
+			productReference = FD68A75619C94D5000684EA2 /* CLIKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FD68A72619C9466500684EA2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Maple Glen Software";
+				TargetAttributes = {
+					FD68A74B19C94D4F00684EA2 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					FD68A75519C94D5000684EA2 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = FD68A72919C9466500684EA2 /* Build configuration list for PBXProject "CLIKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FD68A72519C9466500684EA2;
+			productRefGroup = FD68A72F19C9466500684EA2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FD68A74B19C94D4F00684EA2 /* CLIKit */,
+				FD68A75519C94D5000684EA2 /* CLIKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FD68A75419C94D5000684EA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3CAF1ACEFA2F438EAC6FADF3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5A089899E1E74170A43FC89A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-CLIKitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FD68A74819C94D4F00684EA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD68A76719C94E9500684EA2 /* CLIOptionParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD68A75219C94D5000684EA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD68A76C19C9506900684EA2 /* CLIOptionParser.m in Sources */,
+				FD68A76919C94EF100684EA2 /* CLIOptionParserTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FD68A73D19C9466500684EA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FD68A73E19C9466500684EA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FD68A75B19C94D5000684EA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FD68A75C19C94D5000684EA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FD68A75E19C94D5000684EA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F63A108E11DE4D50A217F6F6 /* Pods-CLIKitTests.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CLIKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FD68A75F19C94D5000684EA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F63A108E11DE4D50A217F6F6 /* Pods-CLIKitTests.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CLIKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FD68A72919C9466500684EA2 /* Build configuration list for PBXProject "CLIKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD68A73D19C9466500684EA2 /* Debug */,
+				FD68A73E19C9466500684EA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD68A75A19C94D5000684EA2 /* Build configuration list for PBXNativeTarget "CLIKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD68A75B19C94D5000684EA2 /* Debug */,
+				FD68A75C19C94D5000684EA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD68A75D19C94D5000684EA2 /* Build configuration list for PBXNativeTarget "CLIKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD68A75E19C94D5000684EA2 /* Debug */,
+				FD68A75F19C94D5000684EA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FD68A72619C9466500684EA2 /* Project object */;
+}
