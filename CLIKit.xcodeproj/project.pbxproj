@@ -8,16 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		71EAA5D75D09450DA90C3CA9 /* libPods-CLIKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C18454424D4877AD20093B /* libPods-CLIKitTests.a */; };
+		FD47601119CFD8C700576F07 /* CLIOptionRequirement.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC96EF719CE6F9F005F8D07 /* CLIOptionRequirement.m */; };
+		FD47601419CFE97900576F07 /* CLIStringUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = FD47601219CFE97900576F07 /* CLIStringUtils.h */; };
+		FD47601519CFE97900576F07 /* CLIStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FD47601319CFE97900576F07 /* CLIStringUtils.m */; };
 		FD68A76419C94E9500684EA2 /* CLIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FD68A76019C94E9500684EA2 /* CLIKit.h */; };
 		FD68A76619C94E9500684EA2 /* CLIOptionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = FD68A76219C94E9500684EA2 /* CLIOptionParser.h */; };
 		FD68A76719C94E9500684EA2 /* CLIOptionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68A76319C94E9500684EA2 /* CLIOptionParser.m */; };
 		FD68A76919C94EF100684EA2 /* CLIOptionParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68A76819C94EF100684EA2 /* CLIOptionParserTest.m */; };
 		FD68A76C19C9506900684EA2 /* CLIOptionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68A76319C94E9500684EA2 /* CLIOptionParser.m */; };
+		FDC96EF819CE6F9F005F8D07 /* CLIOptionRequirement.h in Headers */ = {isa = PBXBuildFile; fileRef = FDC96EF619CE6F9F005F8D07 /* CLIOptionRequirement.h */; };
+		FDC96EF919CE6F9F005F8D07 /* CLIOptionRequirement.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC96EF719CE6F9F005F8D07 /* CLIOptionRequirement.m */; };
+		FDD0708B19D0ACB60048C06E /* CLIStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FD47601319CFE97900576F07 /* CLIStringUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		41C18454424D4877AD20093B /* libPods-CLIKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CLIKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F63A108E11DE4D50A217F6F6 /* Pods-CLIKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLIKitTests.xcconfig"; path = "Pods/Pods-CLIKitTests.xcconfig"; sourceTree = "<group>"; };
+		FD47601219CFE97900576F07 /* CLIStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIStringUtils.h; sourceTree = "<group>"; };
+		FD47601319CFE97900576F07 /* CLIStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIStringUtils.m; sourceTree = "<group>"; };
 		FD68A74C19C94D4F00684EA2 /* libCLIKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCLIKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD68A75619C94D5000684EA2 /* CLIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CLIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD68A75919C94D5000684EA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -25,6 +33,8 @@
 		FD68A76219C94E9500684EA2 /* CLIOptionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIOptionParser.h; sourceTree = "<group>"; };
 		FD68A76319C94E9500684EA2 /* CLIOptionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIOptionParser.m; sourceTree = "<group>"; };
 		FD68A76819C94EF100684EA2 /* CLIOptionParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIOptionParserTest.m; sourceTree = "<group>"; };
+		FDC96EF619CE6F9F005F8D07 /* CLIOptionRequirement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIOptionRequirement.h; sourceTree = "<group>"; };
+		FDC96EF719CE6F9F005F8D07 /* CLIOptionRequirement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIOptionRequirement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +90,10 @@
 				FD68A76019C94E9500684EA2 /* CLIKit.h */,
 				FD68A76219C94E9500684EA2 /* CLIOptionParser.h */,
 				FD68A76319C94E9500684EA2 /* CLIOptionParser.m */,
+				FDC96EF619CE6F9F005F8D07 /* CLIOptionRequirement.h */,
+				FDC96EF719CE6F9F005F8D07 /* CLIOptionRequirement.m */,
+				FD47601219CFE97900576F07 /* CLIStringUtils.h */,
+				FD47601319CFE97900576F07 /* CLIStringUtils.m */,
 			);
 			path = CLIKit;
 			sourceTree = "<group>";
@@ -108,7 +122,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDC96EF819CE6F9F005F8D07 /* CLIOptionRequirement.h in Headers */,
 				FD68A76419C94E9500684EA2 /* CLIKit.h in Headers */,
+				FD47601419CFE97900576F07 /* CLIStringUtils.h in Headers */,
 				FD68A76619C94E9500684EA2 /* CLIOptionParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,7 +251,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD47601519CFE97900576F07 /* CLIStringUtils.m in Sources */,
 				FD68A76719C94E9500684EA2 /* CLIOptionParser.m in Sources */,
+				FDC96EF919CE6F9F005F8D07 /* CLIOptionRequirement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +262,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD68A76C19C9506900684EA2 /* CLIOptionParser.m in Sources */,
+				FD47601119CFD8C700576F07 /* CLIOptionRequirement.m in Sources */,
 				FD68A76919C94EF100684EA2 /* CLIOptionParserTest.m in Sources */,
+				FDD0708B19D0ACB60048C06E /* CLIStringUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +348,7 @@
 		FD68A75B19C94D5000684EA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -340,6 +361,7 @@
 		FD68A75C19C94D5000684EA2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

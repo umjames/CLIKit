@@ -8,8 +8,39 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CLIOptionParser : NSObject
+extern NSString* const CLIKitErrorDomain;
 
-- (instancetype)initWithArgumentsFromMain: (const char**)args count: (unsigned int)count;
+typedef enum {
+    kMissingRequiredArgument = 1,
+    kUnknownOption
+} CLIKitErrorCode;
+
+@class CLIOptionParser;
+
+@protocol CLIOptionParserDelegate <NSObject>
+
+@required
+
+- (void)optionParser: (CLIOptionParser*)parser didEncounterOptionWithFlagName: (NSString*)optionFlag flagValue: (char)flagValue argument: (NSString*)optionArgument;
+- (void)optionParser: (CLIOptionParser*)parser didEncounterNonOptionArguments: (NSArray*)remainingArguments;
+
+@optional
+
+- (void)optionParserWillBeginParsing: (CLIOptionParser*)parser;
+- (void)optionParserDidFinishParsing: (CLIOptionParser*)parser;
 
 @end
+
+@interface CLIOptionParser : NSObject
+
+@property (weak, nonatomic) id<CLIOptionParserDelegate> delegate;
+
+- (instancetype)init;
+
+- (BOOL)parseCommandLineArguments: (char* const*)arguments
+                            count: (unsigned int)argumentCount
+           withOptionRequirements: (NSArray*)optionRequirements
+                            error: (NSError**)err;
+
+@end
+
