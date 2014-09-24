@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.version          = "0.1.0"
   s.summary          = "Tools to help you build Cocoa command-line applications"
   s.description      = <<-DESC
-			Tools to help you build Cocoa command-line applications
+			Includes classes for parsing command-line options for your Objective-C programs
                        DESC
   s.homepage         = "https://github.com/umjames/CLIKit"
   s.license          = 'MIT'
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.platform     = :osx, '10.9'
   s.requires_arc = true
 
-  s.source_files = 'Source'
+  s.source_files = 'CLIKit/**/*.{h,m}'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
