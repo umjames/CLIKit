@@ -7,8 +7,9 @@
 //
 
 #import "CLIOptionParser.h"
-#import "CLIOptionRequirement.h"
+#import "CLIOption.h"
 #import "CLIStringUtils.h"
+#import "CLIArrayUtils.h"
 #import <unistd.h>
 #import <getopt.h>
 
@@ -17,17 +18,21 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
 @interface CLIOptionParser ()
 
 @property (assign, nonatomic) BOOL parseSucceeded;
+@property (strong, nonatomic) NSArray*  shortOptions;
+@property (strong, nonatomic) NSArray*  longOptions;
 
 @end
 
 @implementation CLIOptionParser
 
-@synthesize delegate, parseSucceeded;
+@synthesize delegate, parseSucceeded, shortOptions, longOptions;
 
 - (instancetype)init {
     if (self = [super init]) {
         delegate = nil;
         parseSucceeded = NO;
+        shortOptions = nil;
+        longOptions = nil;
         return self;
     }
     
@@ -36,17 +41,25 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
 
 - (BOOL)parseCommandLineArguments: (char* const*)arguments
                             count: (unsigned int)argumentCount
-           withOptionRequirements: (NSArray*)optionRequirements
+               optionsToRecognize: (NSArray*)optionsToRecognize
                             error: (NSError**)err {
     
     self.parseSucceeded = YES;
+    
+    self.shortOptions = [CLIArrayUtils objectsFromArray: optionsToRecognize passingTest: ^BOOL(CLIOption* option, NSUInteger index, BOOL *stop) {
+        return option.isShortOption;
+    }];
+    
+    self.longOptions = [CLIArrayUtils objectsFromArray: optionsToRecognize passingTest: ^BOOL(CLIOption* option, NSUInteger index, BOOL *stop) {
+        return !(option.isShortOption);
+    }];
     
     if (nil != self.delegate && [self.delegate respondsToSelector: @selector(optionParserWillBeginParsing:)]) {
         [self.delegate optionParserWillBeginParsing: self];
     }
     
-    const char* shortOptions = [self generateShortOptionsStringFromRequirements: optionRequirements];
-    struct option* longOptions = [self createLongOptionsArrayFromRequirements: optionRequirements];
+    const char* shortOptionString = [self generateShortOptionsString];
+    struct option* longGetOptOptions = [self createLongOptionsArray];
     int longOptionIndex = 0;
     int found_option = 0;
     
@@ -59,8 +72,8 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
     for (unsigned int index = 0; index < argumentCount; index++) {
         NSLog(@"argument[%d] = %s", index, arguments[index]);
     }
-    NSLog(@"Before processing getopt_long, argument count = %d, shortOptions = %s, first longOptions name = %s, longOptionIndex = %d", argumentCount, shortOptions, longOptions[0].name, longOptionIndex);
-    while ((found_option = getopt_long(argumentCount, arguments, shortOptions, longOptions, &longOptionIndex)) != -1) {
+    NSLog(@"Before processing getopt_long, argument count = %d, shortOptions = %s, first longOptions name = %s, longOptionIndex = %d", argumentCount, shortOptionString, longGetOptOptions[0].name, longOptionIndex);
+    while ((found_option = getopt_long(argumentCount, arguments, shortOptionString, longGetOptOptions, &longOptionIndex)) != -1) {
         NSLog(@"getopt_long found option %c", (char)found_option);
         switch (found_option) {
             case '?':
@@ -72,7 +85,7 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
                 break;
                 
             default:
-                [self processOptionWithValue: found_option inOptionRequirements: optionRequirements error: err];
+                [self processOptionWithValue: found_option longOptionIndex: &longOptionIndex optionsToRecognize: optionsToRecognize error: err];
                 break;
         }
     }
@@ -80,7 +93,7 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
     NSLog(@"after while loop getopt_long found option %d", found_option);
     NSLog(@"after while loop getopt_long set optind to %d", optind);
     
-    free(longOptions);
+    free(longGetOptOptions);
     
     if (self.parseSucceeded) {
         NSMutableArray* remainingArguments = [NSMutableArray arrayWithCapacity: 4];
@@ -115,26 +128,32 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
     self.parseSucceeded = NO;
 }
 
-- (void)processOptionWithValue: (int)optionValue inOptionRequirements: (NSArray*)optionRequirements error: (NSError**)err {
-    if (nil == optionRequirements || [optionRequirements count] <= 0) {
+- (void)processOptionWithValue: (int)optionValue longOptionIndex: (int*)longOptionIndex optionsToRecognize: (NSArray*)optionsToRecognize error: (NSError**)err {
+    if (nil == optionsToRecognize || [optionsToRecognize count] <= 0) {
         NSLog(@"No option requirements to process option values with");
         return;
     }
     
-    NSUInteger optionIndex = [optionRequirements indexOfObjectPassingTest: ^BOOL(CLIOptionRequirement* optionRequirement, NSUInteger idx, BOOL *stop) {
-        return (optionValue == optionRequirement.valueIfOptionUsed);
-    }];
-    
-    if (NSNotFound == optionIndex) {
-        NSLog(@"Could not find an option requirement with value '%c'", optionValue);
-        return;
-    }
-    
     if (nil != self.delegate) {
-        CLIOptionRequirement* matchingOptionRequirement = optionRequirements[optionIndex];
+        CLIOption* matchingOption = nil;
         NSString*   argumentValue = nil;
         
-        if (matchingOptionRequirement.canHaveArgument && NULL != optarg) {
+        if (NULL == longOptionIndex || [self.longOptions count] <= 0) {
+            NSUInteger shortOptionIndex = [self.shortOptions indexOfObjectPassingTest: ^BOOL(CLIOption* option, NSUInteger idx, BOOL *stop) {
+                return ([option.optionName characterAtIndex: 0] == optionValue);
+            }];
+    
+            if (NSNotFound == shortOptionIndex) {
+                NSLog(@"Could not find an option requirement with value '%c'", optionValue);
+                return;
+            }
+
+            matchingOption = self.shortOptions[shortOptionIndex];
+        } else {
+            matchingOption = self.longOptions[*longOptionIndex];
+        }
+        
+        if (matchingOption.canHaveArgument && NULL != optarg) {
             argumentValue = [NSString stringWithCString: optarg encoding: NSASCIIStringEncoding];
         }
         
@@ -143,22 +162,16 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
             return;
         }
         
-        NSLog(@"argument value for encountered option %@: %@", matchingOptionRequirement.optionName, argumentValue);
+        NSLog(@"argument value for encountered option %@: %@", matchingOption.optionName, argumentValue);
         
-        [self.delegate optionParser: self didEncounterOptionWithFlagName: matchingOptionRequirement.optionName flagValue: (char)optionValue argument: argumentValue];
+        [self.delegate optionParser: self didEncounterOptionWithName: matchingOption.optionName argument: argumentValue];
     }
 }
 
-- (const char*)generateShortOptionsStringFromRequirements: (NSArray*)optionRequirements {
+- (const char*)generateShortOptionsString {
     __block NSMutableString* shortOptionString = [[NSMutableString alloc] initWithCapacity: 6];
     
-    NSIndexSet* shortOptionIndexes = [optionRequirements indexesOfObjectsPassingTest: ^BOOL(CLIOptionRequirement* obj, NSUInteger idx, BOOL* stop) {
-        return (YES == obj.isShortOption);
-    }];
-    
-    NSArray* shortOptions = [optionRequirements objectsAtIndexes: shortOptionIndexes];
-    
-    [shortOptions enumerateObjectsUsingBlock:^(CLIOptionRequirement* obj, NSUInteger idx, BOOL *stop) {
+    [self.shortOptions enumerateObjectsUsingBlock:^(CLIOption* obj, NSUInteger idx, BOOL *stop) {
         if (![CLIStringUtils isBlank: obj.optionName]) {
             [shortOptionString appendString: [obj.optionName substringWithRange: NSMakeRange(0, 1)]];
             
@@ -173,15 +186,10 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
     return [shortOptionString cStringUsingEncoding: NSASCIIStringEncoding];
 }
 
-- (struct option*)createLongOptionsArrayFromRequirements: (NSArray*)optionRequirements {
-    NSIndexSet* longOptionIndexes = [optionRequirements indexesOfObjectsPassingTest: ^BOOL(CLIOptionRequirement* obj, NSUInteger idx, BOOL* stop) {
-        return (NO == obj.isShortOption);
-    }];
+- (struct option*)createLongOptionsArray {
+    __block struct option* longGetOptOptions = (struct option*)malloc(([self.longOptions count] + 1) * sizeof(struct option));
     
-    NSArray* longOptionsRequirements = [optionRequirements objectsAtIndexes: longOptionIndexes];
-    __block struct option* longOptions = (struct option*)malloc(([longOptionsRequirements count] + 1) * sizeof(struct option));
-    
-    [longOptionsRequirements enumerateObjectsUsingBlock: ^(CLIOptionRequirement* obj, NSUInteger idx, BOOL *stop) {
+    [self.longOptions enumerateObjectsUsingBlock: ^(CLIOption* obj, NSUInteger idx, BOOL *stop) {
         if (![CLIStringUtils isBlank: obj.optionName]) {
             struct option longOption;
             
@@ -196,9 +204,9 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
             }
             
             longOption.flag = NULL;
-            longOption.val = obj.valueIfOptionUsed;
+            longOption.val = 0;
             
-            longOptions[idx] = longOption;
+            longGetOptOptions[idx] = longOption;
         }
     }];
     
@@ -209,9 +217,9 @@ NSString* const CLIKitErrorDomain = @"CLIKitErrorDomain";
     terminator.flag = NULL;
     terminator.val = 0;
     
-    longOptions[([longOptionsRequirements count])] = terminator;
+    longGetOptOptions[([self.longOptions count])] = terminator;
     
-    return longOptions;
+    return longGetOptOptions;
 }
 
 @end

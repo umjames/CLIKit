@@ -6,5 +6,6 @@
 //  Copyright (c) 2014 Michael James. All rights reserved.
 //
 
+#import <CLIKit/CLIOption.h>
 #import <CLIKit/CLIOptionParser.h>
 
