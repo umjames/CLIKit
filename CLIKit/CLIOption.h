@@ -15,6 +15,8 @@
  */
 @interface CLIOption : NSObject
 
+/** @name Properties */
+
 /** Is the option short (eg. -v) or long (eg. --version)? */
 @property (assign, readonly, nonatomic) BOOL      isShortOption;
 
@@ -26,6 +28,8 @@
 
 /** The name of the option (will be the first letter of this value if this is a short option, the entire string is this is a long option) */
 @property (copy, readonly, nonatomic) NSString*   optionName;
+
+/** @name Convenience creation methods */
 
 /**
  Create an instance for a short option

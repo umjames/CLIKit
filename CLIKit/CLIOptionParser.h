@@ -12,10 +12,12 @@
 extern NSString* const CLIKitErrorDomain;
 
 /** Error codes used by CLIOptionParser */
-typedef enum {
+typedef NS_ENUM(NSUInteger, CLIOptionParserErrorCode) {
+    /** An option that required an argument was not supplied with that argument */
     kMissingRequiredArgument = 1,
+    /** An option that wasn't specified was encountered */
     kUnknownOption
-} CLIOptionParserErrorCode;
+};
 
 @class CLIOptionParser;
 
@@ -77,11 +79,20 @@ typedef enum {
  */
 @interface CLIOptionParser : NSObject
 
+/** @name Properties */
+
 /** The delegate that will receive parsing lifecycle callbacks */
 @property (weak, nonatomic) id<CLIOptionParserDelegate> delegate;
 
+/** @name Parse command-line options */
+
 /**
  Parse the given command line arguments (as given in parameters to the program's main() method.
+ 
+ If parsing is unsuccessful, the method returns NO and, if a non-NULL NSError** is given, the error will have the following characteristics:
+ 
+ - the error domain will be CLIKitErrorDomain
+ - the error code will be a value from the CLIOptionParserErrorCode enumeration
  
  @param arguments The command line arguments supplied as the argv parameter to the program's main() function
  @param argumentCount The number of arguments supplied as the argc parameter to the program's main() function

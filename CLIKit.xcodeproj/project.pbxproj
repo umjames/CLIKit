@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		FDD8FC9D19DBB540006B4898 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = FDD8FCA019DBB541006B4898 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				FDD8FCA119DBB567006B4898 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		71EAA5D75D09450DA90C3CA9 /* libPods-CLIKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C18454424D4877AD20093B /* libPods-CLIKitTests.a */; };
 		FD47601119CFD8C700576F07 /* CLIOption.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC96EF719CE6F9F005F8D07 /* CLIOption.m */; };
@@ -191,6 +205,9 @@
 					FD68A75519C94D5000684EA2 = {
 						CreatedOnToolsVersion = 6.0;
 					};
+					FDD8FC9D19DBB540006B4898 = {
+						CreatedOnToolsVersion = 6.0;
+					};
 				};
 			};
 			buildConfigurationList = FD68A72919C9466500684EA2 /* Build configuration list for PBXProject "CLIKit" */;
@@ -207,6 +224,7 @@
 			targets = (
 				FD68A74B19C94D4F00684EA2 /* CLIKit */,
 				FD68A75519C94D5000684EA2 /* CLIKitTests */,
+				FDD8FC9D19DBB540006B4898 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -251,6 +269,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-CLIKitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FDD8FCA119DBB567006B4898 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [ \"Debug\" = \"${CONFIGURATION}\" ]; then\n/usr/local/bin/appledoc \\\n--project-name CLIKit \\\n--project-company \"Maple Glen Software\" \\\n--company-id com.mapleglensoftware \\\n--search-undocumented-doc \\\n--exit-threshold 2 \\\n--no-create-docset \\\n--ignore .m \\\n--output \"Documentation\" .\nelse\n/usr/local/bin/appledoc \\\n--project-name CLIKit \\\n--project-company \"Maple Glen Software\" \\\n--company-id com.mapleglensoftware \\\n--search-undocumented-doc \\\n--exit-threshold 2 \\\n--ignore .m \\\n--output \"Docset\" .\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -411,6 +442,20 @@
 			};
 			name = Release;
 		};
+		FDD8FC9E19DBB540006B4898 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FDD8FC9F19DBB540006B4898 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -437,6 +482,15 @@
 			buildConfigurations = (
 				FD68A75E19C94D5000684EA2 /* Debug */,
 				FD68A75F19C94D5000684EA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDD8FCA019DBB541006B4898 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDD8FC9E19DBB540006B4898 /* Debug */,
+				FDD8FC9F19DBB540006B4898 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
