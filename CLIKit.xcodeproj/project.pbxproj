@@ -22,6 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		71EAA5D75D09450DA90C3CA9 /* libPods-CLIKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C18454424D4877AD20093B /* libPods-CLIKitTests.a */; };
+		FD2609C519E0A55900BF9AEB /* CLIErrorCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = FD2609C319E0A55900BF9AEB /* CLIErrorCollector.h */; };
+		FD2609C619E0A55900BF9AEB /* CLIErrorCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2609C419E0A55900BF9AEB /* CLIErrorCollector.m */; };
+		FD2609C719E0FB8900BF9AEB /* CLIErrorCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2609C419E0A55900BF9AEB /* CLIErrorCollector.m */; };
 		FD47601119CFD8C700576F07 /* CLIOption.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC96EF719CE6F9F005F8D07 /* CLIOption.m */; };
 		FD47601419CFE97900576F07 /* CLIStringUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = FD47601219CFE97900576F07 /* CLIStringUtils.h */; };
 		FD47601519CFE97900576F07 /* CLIStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FD47601319CFE97900576F07 /* CLIStringUtils.m */; };
@@ -41,6 +44,8 @@
 /* Begin PBXFileReference section */
 		41C18454424D4877AD20093B /* libPods-CLIKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CLIKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F63A108E11DE4D50A217F6F6 /* Pods-CLIKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLIKitTests.xcconfig"; path = "Pods/Pods-CLIKitTests.xcconfig"; sourceTree = "<group>"; };
+		FD2609C319E0A55900BF9AEB /* CLIErrorCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIErrorCollector.h; sourceTree = "<group>"; };
+		FD2609C419E0A55900BF9AEB /* CLIErrorCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIErrorCollector.m; sourceTree = "<group>"; };
 		FD47601219CFE97900576F07 /* CLIStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIStringUtils.h; sourceTree = "<group>"; };
 		FD47601319CFE97900576F07 /* CLIStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIStringUtils.m; sourceTree = "<group>"; };
 		FD68A74C19C94D4F00684EA2 /* libCLIKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCLIKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +120,8 @@
 				FD47601319CFE97900576F07 /* CLIStringUtils.m */,
 				FDF7150919DA68800040DF94 /* CLIArrayUtils.h */,
 				FDF7150A19DA68800040DF94 /* CLIArrayUtils.m */,
+				FD2609C319E0A55900BF9AEB /* CLIErrorCollector.h */,
+				FD2609C419E0A55900BF9AEB /* CLIErrorCollector.m */,
 			);
 			path = CLIKit;
 			sourceTree = "<group>";
@@ -143,6 +150,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD2609C519E0A55900BF9AEB /* CLIErrorCollector.h in Headers */,
 				FDC96EF819CE6F9F005F8D07 /* CLIOption.h in Headers */,
 				FD68A76419C94E9500684EA2 /* CLIKit.h in Headers */,
 				FD47601419CFE97900576F07 /* CLIStringUtils.h in Headers */,
@@ -291,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD47601519CFE97900576F07 /* CLIStringUtils.m in Sources */,
+				FD2609C619E0A55900BF9AEB /* CLIErrorCollector.m in Sources */,
 				FD68A76719C94E9500684EA2 /* CLIOptionParser.m in Sources */,
 				FDF7150C19DA68800040DF94 /* CLIArrayUtils.m in Sources */,
 				FDC96EF919CE6F9F005F8D07 /* CLIOption.m in Sources */,
@@ -304,6 +313,7 @@
 				FD68A76C19C9506900684EA2 /* CLIOptionParser.m in Sources */,
 				FD47601119CFD8C700576F07 /* CLIOption.m in Sources */,
 				FD68A76919C94EF100684EA2 /* CLIOptionParserTest.m in Sources */,
+				FD2609C719E0FB8900BF9AEB /* CLIErrorCollector.m in Sources */,
 				FDF7150D19DA72090040DF94 /* CLIArrayUtils.m in Sources */,
 				FDD0708B19D0ACB60048C06E /* CLIStringUtils.m in Sources */,
 			);

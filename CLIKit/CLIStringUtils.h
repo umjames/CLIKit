@@ -12,4 +12,6 @@
 
 + (BOOL)isBlank: (NSString*)str;
 
++ (NSString*)extractBareOptionNameFromString: (NSString*)str;
+
 @end

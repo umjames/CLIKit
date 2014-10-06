@@ -11,5 +11,6 @@
 @interface CLIArrayUtils : NSObject
 
 + (NSArray*)objectsFromArray: (NSArray*)array passingTest: (BOOL (^)(id obj, NSUInteger index, BOOL* stop))predicate;
++ (id)firstObjectFromArray: (NSArray*)array passingTest: (BOOL (^)(id obj, NSUInteger index, BOOL* stop))predicate;
 
 @end

@@ -16,4 +16,14 @@
     return [array objectsAtIndexes: indicesPassingTest];
 }
 
++ (id)firstObjectFromArray: (NSArray*)array passingTest: (BOOL (^)(id obj, NSUInteger index, BOOL* stop))predicate {
+    NSUInteger  firstIndexPassingTest = [array indexOfObjectPassingTest: predicate];
+    
+    if (NSNotFound == firstIndexPassingTest) {
+        return nil;
+    }
+    
+    return array[firstIndexPassingTest];
+}
+
 @end

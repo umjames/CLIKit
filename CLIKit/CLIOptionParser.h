@@ -11,12 +11,20 @@
 /** NSError domain of errors coming from this library */
 extern NSString* const CLIKitErrorDomain;
 
+/** NSError userInfo key whose value contains the name of the option in question */
+extern NSString* const CLIOptionNameKey;
+
+/** NSError userInfo key whose value contains an array of NSError objects describing multiple CLIKit errors */
+extern NSString* const CLIMultipleErrorsKey;
+
 /** Error codes used by CLIOptionParser */
 typedef NS_ENUM(NSUInteger, CLIOptionParserErrorCode) {
     /** An option that required an argument was not supplied with that argument */
-    kMissingRequiredArgument = 1,
+    kCLIMissingRequiredArgument = 1,
     /** An option that wasn't specified was encountered */
-    kUnknownOption
+    kCLIUnknownOption,
+    /** There are multiple errors which can be found the error's userInfo dictionary under the key CLIMultipleErrorsKey */
+    kCLIMultipleErrors
 };
 
 @class CLIOptionParser;
