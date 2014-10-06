@@ -97,10 +97,19 @@ typedef NS_ENUM(NSUInteger, CLIOptionParserErrorCode) {
 /**
  Parse the given command line arguments (as given in parameters to the program's main() method.
  
- If parsing is unsuccessful, the method returns NO and, if a non-NULL NSError** is given, the error will have the following characteristics:
+ If parsing is unsuccessful, the method returns NO and, if a non-NULL NSError** is given, the error will be one of the following:
  
- - the error domain will be CLIKitErrorDomain
- - the error code will be a value from the CLIOptionParserErrorCode enumeration
+ 1. In the case of a single error:
+ 
+     - the error domain will be CLIKitErrorDomain
+     - the error code will be a value from the CLIOptionParserErrorCode enumeration (not kCLIMultipleErrors)
+     - the error userInfo dictionary will contain the key CLIOptionNameKey and the value will be the option that caused the error
+ 
+ 2. In the case of multiple errors:
+ 
+     - the error domain will be CLIKitErrorDomain
+     - the error code will be kCLIMultipleErrors
+     - the error userInfo dictionary will contain the key CLIMultipleErrorsKey and the value will be an array of single error objects (as described in case 1 above)
  
  @param arguments The command line arguments supplied as the argv parameter to the program's main() function
  @param argumentCount The number of arguments supplied as the argc parameter to the program's main() function
