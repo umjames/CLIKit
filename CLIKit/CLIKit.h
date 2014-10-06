@@ -8,4 +8,5 @@
 
 #import <CLIKit/CLIOption.h>
 #import <CLIKit/CLIOptionParser.h>
+#import <CLIKit/CLIUsageMessageGenerator.h>
 

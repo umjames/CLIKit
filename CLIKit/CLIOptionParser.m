@@ -11,6 +11,7 @@
 #import "CLIStringUtils.h"
 #import "CLIArrayUtils.h"
 #import "CLIErrorCollector.h"
+#import "CLIOptionUtils.h"
 #import <unistd.h>
 #import <getopt.h>
 
@@ -52,11 +53,13 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
     
     self.parseSucceeded = YES;
     
-    self.shortOptions = [CLIArrayUtils objectsFromArray: optionsToRecognize passingTest: ^BOOL(CLIOption* option, NSUInteger index, BOOL *stop) {
+    NSDictionary*   normalizedOptions = [CLIOptionUtils normalizeOptions: optionsToRecognize];
+    
+    self.shortOptions = [CLIArrayUtils objectsFromArray: normalizedOptions[CLIShortOptionsKey] passingTest: ^BOOL(CLIOption* option, NSUInteger index, BOOL *stop) {
         return option.isShortOption;
     }];
     
-    self.longOptions = [CLIArrayUtils objectsFromArray: optionsToRecognize passingTest: ^BOOL(CLIOption* option, NSUInteger index, BOOL *stop) {
+    self.longOptions = [CLIArrayUtils objectsFromArray: normalizedOptions[CLILongOptionsKey] passingTest: ^BOOL(CLIOption* option, NSUInteger index, BOOL *stop) {
         return !(option.isShortOption);
     }];
     

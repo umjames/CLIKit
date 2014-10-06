@@ -40,9 +40,9 @@
     char* const*    cliArgs = [self createCommandlineArgumentsFromString: @"progname -xvf"];
     id              delegateMock = OCMProtocolMock(@protocol(CLIOptionParserDelegate));
     NSError*        error = nil;
-    NSArray*        optionRequirements = @[ [CLIOption shortOptionWithName: @"v" canHaveArgument: NO thatIsRequired: NO],
-                                            [CLIOption shortOptionWithName: @"x" canHaveArgument: NO thatIsRequired: NO],
-                                            [CLIOption shortOptionWithName: @"f" canHaveArgument: NO thatIsRequired: NO]];
+    NSArray*        optionRequirements = @[ [CLIOption shortOptionWithName: @"v" canHaveArgument: NO thatIsRequired: NO aliases: nil],
+                                            [CLIOption shortOptionWithName: @"x" canHaveArgument: NO thatIsRequired: NO aliases: nil],
+                                            [CLIOption shortOptionWithName: @"f" canHaveArgument: NO thatIsRequired: NO aliases: nil]];
     
     _optionParser = [[CLIOptionParser alloc] init];
     OCMExpect([delegateMock optionParserWillBeginParsing: _optionParser]);
@@ -64,8 +64,8 @@
     char* const*    cliArgs = [self createCommandlineArgumentsFromString: @"progname -f filename -o output"];
     id              delegateMock = OCMProtocolMock(@protocol(CLIOptionParserDelegate));
     NSError*        error = nil;
-    NSArray*        optionRequirements = @[ [CLIOption shortOptionWithName: @"f" canHaveArgument: YES thatIsRequired: YES],
-                                            [CLIOption shortOptionWithName: @"o" canHaveArgument: YES thatIsRequired: NO] ];
+    NSArray*        optionRequirements = @[ [CLIOption shortOptionWithName: @"f" canHaveArgument: YES thatIsRequired: YES aliases: nil],
+                                            [CLIOption shortOptionWithName: @"o" canHaveArgument: YES thatIsRequired: NO aliases: nil] ];
     
     _optionParser = [[CLIOptionParser alloc] init];
     OCMExpect([delegateMock optionParserWillBeginParsing: _optionParser]);
@@ -100,8 +100,8 @@
     char* const*    cliArgs = [self createCommandlineArgumentsFromString: @"progname --version --no-ff"];
     id              delegateMock = OCMProtocolMock(@protocol(CLIOptionParserDelegate));
     NSError*        error = nil;
-    NSArray*        optionRequirements = @[ [CLIOption longOptionWithName: @"version" canHaveArgument: NO thatIsRequired: NO],
-                                            [CLIOption longOptionWithName: @"no-ff" canHaveArgument: NO thatIsRequired: NO]];
+    NSArray*        optionRequirements = @[ [CLIOption longOptionWithName: @"version" canHaveArgument: NO thatIsRequired: NO aliases: nil],
+                                            [CLIOption longOptionWithName: @"no-ff" canHaveArgument: NO thatIsRequired: NO aliases: nil]];
     
     _optionParser = [[CLIOptionParser alloc] init];
     OCMExpect([delegateMock optionParserWillBeginParsing: _optionParser]);
@@ -122,8 +122,8 @@
     char* const*    cliArgs = [self createCommandlineArgumentsFromString: @"progname --file filename --log-level=debug"];
     id              delegateMock = OCMProtocolMock(@protocol(CLIOptionParserDelegate));
     NSError*        error = nil;
-    NSArray*        optionRequirements = @[ [CLIOption longOptionWithName: @"file" canHaveArgument: YES thatIsRequired: YES],
-                                            [CLIOption longOptionWithName: @"log-level" canHaveArgument: YES thatIsRequired: NO]];
+    NSArray*        optionRequirements = @[ [CLIOption longOptionWithName: @"file" canHaveArgument: YES thatIsRequired: YES aliases: nil],
+                                            [CLIOption longOptionWithName: @"log-level" canHaveArgument: YES thatIsRequired: NO aliases: nil]];
     
     _optionParser = [[CLIOptionParser alloc] init];
     OCMExpect([delegateMock optionParserWillBeginParsing: _optionParser]);
@@ -144,7 +144,7 @@
     char* const*    cliArgs = [self createCommandlineArgumentsFromString: @"progname --file filename arg1 arg2 arg3"];
     id              delegateMock = OCMProtocolMock(@protocol(CLIOptionParserDelegate));
     NSError*        error = nil;
-    NSArray*        optionRequirements = @[ [CLIOption longOptionWithName: @"file" canHaveArgument: YES thatIsRequired: YES] ];
+    NSArray*        optionRequirements = @[ [CLIOption longOptionWithName: @"file" canHaveArgument: YES thatIsRequired: YES aliases: nil] ];
     NSArray*        remainingArguments = @[@"arg1", @"arg2", @"arg3"];
     
     _optionParser = [[CLIOptionParser alloc] init];
@@ -166,7 +166,7 @@
     char* const*    cliArgs = [self createCommandlineArgumentsFromString: @"progname --file -- arg1 arg2 arg3"];
     id              delegateMock = OCMProtocolMock(@protocol(CLIOptionParserDelegate));
     NSError*        error = nil;
-    NSArray*        optionRequirements = @[ [CLIOption longOptionWithName: @"file" canHaveArgument: YES thatIsRequired: YES] ];
+    NSArray*        optionRequirements = @[ [CLIOption longOptionWithName: @"file" canHaveArgument: YES thatIsRequired: YES aliases: nil] ];
     
     _optionParser = [[CLIOptionParser alloc] init];
     OCMExpect([delegateMock optionParserWillBeginParsing: _optionParser]);
@@ -189,8 +189,8 @@
     char* const*    cliArgs = [self createCommandlineArgumentsFromString: @"progname -files --unknown-option=true"];
     id              delegateMock = OCMProtocolMock(@protocol(CLIOptionParserDelegate));
     NSError*        error = nil;
-    NSArray*        optionRequirements = @[ [CLIOption shortOptionWithName: @"f" canHaveArgument: NO thatIsRequired: NO],
-                                            [CLIOption shortOptionWithName: @"i" canHaveArgument: NO thatIsRequired: NO] ];
+    NSArray*        optionRequirements = @[ [CLIOption shortOptionWithName: @"f" canHaveArgument: NO thatIsRequired: NO aliases: nil],
+                                            [CLIOption shortOptionWithName: @"i" canHaveArgument: NO thatIsRequired: NO aliases: nil] ];
     
     _optionParser = [[CLIOptionParser alloc] init];
     OCMExpect([delegateMock optionParserWillBeginParsing: _optionParser]);
@@ -212,6 +212,28 @@
         XCTAssertEqual(kCLIUnknownOption, [multipleErrors[index] code]);
         XCTAssertEqualObjects(unknownOptionName, [multipleErrors[index] userInfo][CLIOptionNameKey]);
     }];
+    
+    OCMVerifyAll(delegateMock);
+    
+    free((char**)cliArgs);
+}
+
+- (void)testCanParseOptionsWithAliases {
+    char* const*    cliArgs = [self createCommandlineArgumentsFromString: @"progname --file filename --log-level=debug"];
+    id              delegateMock = OCMProtocolMock(@protocol(CLIOptionParserDelegate));
+    NSError*        error = nil;
+    NSArray*        optionRequirements = @[ [CLIOption shortOptionWithName: @"f" canHaveArgument: YES thatIsRequired: YES aliases: @[@"file"]],
+                                            [CLIOption shortOptionWithName: @"l" canHaveArgument: YES thatIsRequired: NO aliases: @[@"log-level"]] ];
+    
+    _optionParser = [[CLIOptionParser alloc] init];
+    OCMExpect([delegateMock optionParserWillBeginParsing: _optionParser]);
+    OCMExpect([delegateMock optionParser: _optionParser didEncounterOptionWithName: @"file" argument: @"filename"]);
+    OCMExpect([delegateMock optionParser: _optionParser didEncounterOptionWithName: @"log-level" argument: @"debug"]);
+    OCMExpect([delegateMock optionParserDidFinishParsing: _optionParser]);
+    
+    _optionParser.delegate = delegateMock;
+    BOOL resultSucceeded = [_optionParser parseCommandLineArguments: cliArgs count: 4 optionsToRecognize: optionRequirements error: &error];
+    XCTAssertTrue(resultSucceeded, @"parseCommandLineArguments:count:error: returned NO");
     
     OCMVerifyAll(delegateMock);
     
