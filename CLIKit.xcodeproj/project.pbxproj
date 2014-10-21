@@ -33,6 +33,7 @@
 		FD68A76719C94E9500684EA2 /* CLIOptionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68A76319C94E9500684EA2 /* CLIOptionParser.m */; };
 		FD68A76919C94EF100684EA2 /* CLIOptionParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68A76819C94EF100684EA2 /* CLIOptionParserTest.m */; };
 		FD68A76C19C9506900684EA2 /* CLIOptionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68A76319C94E9500684EA2 /* CLIOptionParser.m */; };
+		FDB6737A19F469A200F98DBD /* CLIApplicationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB6737919F469A200F98DBD /* CLIApplicationTest.m */; };
 		FDC96EF819CE6F9F005F8D07 /* CLIOption.h in Headers */ = {isa = PBXBuildFile; fileRef = FDC96EF619CE6F9F005F8D07 /* CLIOption.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDC96EF919CE6F9F005F8D07 /* CLIOption.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC96EF719CE6F9F005F8D07 /* CLIOption.m */; };
 		FDCF2E6819E636A300A89FFA /* CLIOptionUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCF2E6719E636A300A89FFA /* CLIOptionUtilsTest.m */; };
@@ -44,6 +45,9 @@
 		FDDD303719E24B95005F4703 /* CLIUsageMessageGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = FDDD303519E24B95005F4703 /* CLIUsageMessageGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDDD303819E24B95005F4703 /* CLIUsageMessageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDD303619E24B95005F4703 /* CLIUsageMessageGenerator.m */; };
 		FDDD303919E24BC1005F4703 /* CLIUsageMessageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDD303619E24B95005F4703 /* CLIUsageMessageGenerator.m */; };
+		FDE0B0E119EE131500BDE70E /* CLIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE0B0DF19EE131500BDE70E /* CLIApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FDE0B0E219EE131500BDE70E /* CLIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE0B0E019EE131500BDE70E /* CLIApplication.m */; };
+		FDE0B0E319EE133400BDE70E /* CLIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE0B0E019EE131500BDE70E /* CLIApplication.m */; };
 		FDF7150B19DA68800040DF94 /* CLIArrayUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = FDF7150919DA68800040DF94 /* CLIArrayUtils.h */; };
 		FDF7150C19DA68800040DF94 /* CLIArrayUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF7150A19DA68800040DF94 /* CLIArrayUtils.m */; };
 		FDF7150D19DA72090040DF94 /* CLIArrayUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF7150A19DA68800040DF94 /* CLIArrayUtils.m */; };
@@ -63,6 +67,7 @@
 		FD68A76219C94E9500684EA2 /* CLIOptionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIOptionParser.h; sourceTree = "<group>"; };
 		FD68A76319C94E9500684EA2 /* CLIOptionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIOptionParser.m; sourceTree = "<group>"; };
 		FD68A76819C94EF100684EA2 /* CLIOptionParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIOptionParserTest.m; sourceTree = "<group>"; };
+		FDB6737919F469A200F98DBD /* CLIApplicationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIApplicationTest.m; sourceTree = "<group>"; };
 		FDC96EF619CE6F9F005F8D07 /* CLIOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIOption.h; sourceTree = "<group>"; };
 		FDC96EF719CE6F9F005F8D07 /* CLIOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIOption.m; sourceTree = "<group>"; };
 		FDCF2E6719E636A300A89FFA /* CLIOptionUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIOptionUtilsTest.m; sourceTree = "<group>"; };
@@ -71,6 +76,8 @@
 		FDDD303319E249F1005F4703 /* CLIUsageMessageGeneratorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIUsageMessageGeneratorTest.m; sourceTree = "<group>"; };
 		FDDD303519E24B95005F4703 /* CLIUsageMessageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIUsageMessageGenerator.h; sourceTree = "<group>"; };
 		FDDD303619E24B95005F4703 /* CLIUsageMessageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIUsageMessageGenerator.m; sourceTree = "<group>"; };
+		FDE0B0DF19EE131500BDE70E /* CLIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIApplication.h; sourceTree = "<group>"; };
+		FDE0B0E019EE131500BDE70E /* CLIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIApplication.m; sourceTree = "<group>"; };
 		FDF7150919DA68800040DF94 /* CLIArrayUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIArrayUtils.h; sourceTree = "<group>"; };
 		FDF7150A19DA68800040DF94 /* CLIArrayUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIArrayUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +147,8 @@
 				FD2609C419E0A55900BF9AEB /* CLIErrorCollector.m */,
 				FDDD303519E24B95005F4703 /* CLIUsageMessageGenerator.h */,
 				FDDD303619E24B95005F4703 /* CLIUsageMessageGenerator.m */,
+				FDE0B0DF19EE131500BDE70E /* CLIApplication.h */,
+				FDE0B0E019EE131500BDE70E /* CLIApplication.m */,
 			);
 			path = CLIKit;
 			sourceTree = "<group>";
@@ -151,6 +160,7 @@
 				FD68A76819C94EF100684EA2 /* CLIOptionParserTest.m */,
 				FDDD303319E249F1005F4703 /* CLIUsageMessageGeneratorTest.m */,
 				FDCF2E6719E636A300A89FFA /* CLIOptionUtilsTest.m */,
+				FDB6737919F469A200F98DBD /* CLIApplicationTest.m */,
 			);
 			path = CLIKitTests;
 			sourceTree = "<group>";
@@ -172,6 +182,7 @@
 			files = (
 				FDCF2E6B19E636CD00A89FFA /* CLIOptionUtils.h in Headers */,
 				FD2609C519E0A55900BF9AEB /* CLIErrorCollector.h in Headers */,
+				FDE0B0E119EE131500BDE70E /* CLIApplication.h in Headers */,
 				FDC96EF819CE6F9F005F8D07 /* CLIOption.h in Headers */,
 				FD68A76419C94E9500684EA2 /* CLIKit.h in Headers */,
 				FDDD303719E24B95005F4703 /* CLIUsageMessageGenerator.h in Headers */,
@@ -327,6 +338,7 @@
 				FD68A76719C94E9500684EA2 /* CLIOptionParser.m in Sources */,
 				FDF7150C19DA68800040DF94 /* CLIArrayUtils.m in Sources */,
 				FDC96EF919CE6F9F005F8D07 /* CLIOption.m in Sources */,
+				FDE0B0E219EE131500BDE70E /* CLIApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +348,8 @@
 			files = (
 				FD68A76C19C9506900684EA2 /* CLIOptionParser.m in Sources */,
 				FDCF2E6D19E6371D00A89FFA /* CLIOptionUtils.m in Sources */,
+				FDE0B0E319EE133400BDE70E /* CLIApplication.m in Sources */,
+				FDB6737A19F469A200F98DBD /* CLIApplicationTest.m in Sources */,
 				FD47601119CFD8C700576F07 /* CLIOption.m in Sources */,
 				FD68A76919C94EF100684EA2 /* CLIOptionParserTest.m in Sources */,
 				FD2609C719E0FB8900BF9AEB /* CLIErrorCollector.m in Sources */,

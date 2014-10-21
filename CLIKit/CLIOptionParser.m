@@ -69,7 +69,7 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
     
     const char* shortOptionString = [self generateShortOptionsString];
     struct option* longGetOptOptions = [self createLongOptionsArray];
-    int longOptionIndex = 0;
+    int longOptionIndex = -1;
     int found_option = 0;
     
     [self.errorCollector clearErrors];
@@ -105,6 +105,9 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
                 [self processOptionWithValue: found_option longOptionIndex: &longOptionIndex optionsToRecognize: optionsToRecognize];
                 break;
         }
+        
+        // reset long option index so we can tell if next iteration finds a short option
+        longOptionIndex = -1;
     }
     
     NSLog(@"after while loop getopt_long found option %d", found_option);
@@ -199,7 +202,7 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
         CLIOption* matchingOption = nil;
         NSString*   argumentValue = nil;
         
-        if (NULL == longOptionIndex || [self.longOptions count] <= 0) {
+        if (NULL == longOptionIndex || -1 == *longOptionIndex || [self.longOptions count] <= 0) {
             NSUInteger shortOptionIndex = [self.shortOptions indexOfObjectPassingTest: ^BOOL(CLIOption* option, NSUInteger idx, BOOL *stop) {
                 return ([option.optionName characterAtIndex: 0] == optionValue);
             }];
