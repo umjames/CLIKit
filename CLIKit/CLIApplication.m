@@ -53,6 +53,9 @@
 @property (strong, nonatomic) CLIApplicationOptionParserDelegate*   optionParserDelegate;
 
 @property (strong, nonatomic) NSArray*                              recognizedOptions;
+@property (readwrite, strong, nonatomic) NSFileHandle*              standardInput;
+@property (readwrite, strong, nonatomic) NSFileHandle*              standardOutput;
+@property (readwrite, strong, nonatomic) NSFileHandle*              standardError;
 
 @end
 
@@ -60,6 +63,7 @@
 
 @synthesize optionParser, usageMessageGenerator, exitCode, recognizedOptions, optionParserDelegate;
 @synthesize delegate = _delegate;
+@synthesize standardInput, standardOutput, standardError;
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -70,6 +74,9 @@
         optionParser.delegate = optionParserDelegate;
         usageMessageGenerator = nil;
         recognizedOptions = nil;
+        standardError = nil;
+        standardInput = nil;
+        standardOutput = nil;
         
         return self;
     }
@@ -85,24 +92,34 @@
 }
 
 - (void)runWithCommandlineArguments: (char* const*)argsFromMain count: (int)argumentCount {
-    if (nil != self.delegate && [self.delegate respondsToSelector: @selector(applicationWillBeginRunning:)]) {
-        [self.delegate applicationWillBeginRunning: self];
-    }
-    
-    if (nil != self.delegate) {
-        self.recognizedOptions = [self.delegate recognizedOptionsForApplication: self];
+    @try {
+        self.standardError = [NSFileHandle fileHandleWithStandardError];
+        self.standardOutput = [NSFileHandle fileHandleWithStandardOutput];
+        self.standardInput = [NSFileHandle fileHandleWithStandardInput];
         
-        NSError*    err = nil;
-        
-        [self.optionParser parseCommandLineArguments: argsFromMain count: argumentCount optionsToRecognize: self.recognizedOptions error: &err];
-        
-        if (nil != err) {
-            [self.delegate application: self didFailOptionParsingWithError: err];
+        if (nil != self.delegate && [self.delegate respondsToSelector: @selector(applicationWillBeginRunning:)]) {
+            [self.delegate applicationWillBeginRunning: self];
         }
-    }
-    
-    if (nil != self.delegate && [self.delegate respondsToSelector: @selector(applicationWillEndRunning:)]) {
-        [self.delegate applicationWillEndRunning: self];
+        
+        if (nil != self.delegate) {
+            self.recognizedOptions = [self.delegate recognizedOptionsForApplication: self];
+            
+            NSError*    err = nil;
+            
+            [self.optionParser parseCommandLineArguments: argsFromMain count: argumentCount optionsToRecognize: self.recognizedOptions error: &err];
+            
+            if (nil != err) {
+                [self.delegate application: self didFailOptionParsingWithError: err];
+            }
+        }
+        
+        if (nil != self.delegate && [self.delegate respondsToSelector: @selector(applicationWillEndRunning:)]) {
+            [self.delegate applicationWillEndRunning: self];
+        }
+    } @finally {
+        self.standardInput = nil;
+        self.standardOutput = nil;
+        self.standardError = nil;
     }
 }
 

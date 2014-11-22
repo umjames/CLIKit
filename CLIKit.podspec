@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "CLIKit"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "Tools to help you build Cocoa command-line applications"
   s.description      = <<-DESC
 			Includes classes for parsing command-line options for your Objective-C programs

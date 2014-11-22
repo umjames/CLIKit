@@ -99,6 +99,21 @@
  */
 @property (assign, nonatomic) int                       exitCode;
 
+/**
+ *  A file handle to the Unix standard input file descriptor
+ */
+@property (readonly, nonatomic) NSFileHandle*           standardInput;
+
+/**
+ *  A file handle to the Unix standard output file descriptor
+ */
+@property (readonly, nonatomic) NSFileHandle*           standardOutput;
+
+/**
+ *  A file handle to the Unix standard error file descriptor
+ */
+@property (readonly, nonatomic) NSFileHandle*           standardError;
+
 /** @name Methods */
 
 /**
