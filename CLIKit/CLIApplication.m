@@ -141,11 +141,13 @@
 }
 
 - (void)writeUseageMessage {
-    [self writeStdErrorString:[self generateUsageMessage]];
+    NSString *usage = [self generateUsageMessage];
+    [self writeStdErrorString:[NSString stringWithFormat:@"%@%@", usage ?: @"", usage ? @"\n" : @""]];
 }
 
 - (void)writeError:(NSError *)error {
-    [self writeStdErrorString:[error localizedDescription]];
+    NSString *errorDesc = [error localizedDescription];
+    [self writeStdErrorString:[NSString stringWithFormat:@"%@%@", errorDesc ?: @"", errorDesc ? @"\n" : @""]];
 }
 
 - (void)writeStdErrorString:(NSString *)string {
