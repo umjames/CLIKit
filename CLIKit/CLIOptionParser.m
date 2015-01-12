@@ -81,15 +81,19 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
     optreset = 1;
     optind = 1;
     
+#ifdef DEBUG
     for (unsigned int index = 0; index < argumentCount; index++) {
         NSLog(@"argument[%d] = %s", index, arguments[index]);
     }
     NSLog(@"Before processing getopt_long, argument count = %d, shortOptions = %s, first longOptions name = %s, longOptionIndex = %d", argumentCount, shortOptionString, longGetOptOptions[0].name, longOptionIndex);
+#endif
     while ((found_option = getopt_long(argumentCount, arguments, shortOptionString, longGetOptOptions, &longOptionIndex)) != -1) {
+#ifdef DEBUG
         NSLog(@"getopt_long found option %c", (char)found_option);
         NSLog(@"long option index for option: %d", longOptionIndex);
         NSLog(@"optopt = %d, (%c)", optopt, (char)optopt);
         NSLog(@"optind = %d", optind);
+#endif
         switch (found_option) {
             case '?':
                 [self processUnknownOptionInArguments: arguments count: argumentCount];
@@ -110,9 +114,11 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
         longOptionIndex = -1;
     }
     
+#ifdef DEBUG
     NSLog(@"after while loop getopt_long found option %d", found_option);
     NSLog(@"after while loop getopt_long set optind to %d", optind);
-    
+#endif
+
     free(longGetOptOptions);
     
     if (self.parseSucceeded) {
@@ -151,7 +157,9 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
     }];
     
     if (nil == option) {
+#ifdef DEBUG
         NSLog(@"Couldn't find short option '%c' that takes an optional argument", shortOptionEncountered);
+#endif
         return NO;
     }
     
@@ -194,7 +202,9 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
 
 - (void)processOptionWithValue: (int)optionValue longOptionIndex: (int*)longOptionIndex optionsToRecognize: (NSArray*)optionsToRecognize {
     if (nil == optionsToRecognize || [optionsToRecognize count] <= 0) {
+#ifdef DEBUG
         NSLog(@"No option requirements to process option values with");
+#endif
         return;
     }
     
@@ -208,7 +218,9 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
             }];
     
             if (NSNotFound == shortOptionIndex) {
+#ifdef DEBUG
                 NSLog(@"Could not find an option requirement with value '%c'", optionValue);
+#endif
                 return;
             }
 
@@ -226,8 +238,10 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
             return;
         }
         
+#ifdef DEBUG
         NSLog(@"argument value for encountered option %@: %@", matchingOption.optionName, argumentValue);
-        
+#endif
+
         [self.delegate optionParser: self didEncounterOptionWithName: matchingOption.optionName argument: argumentValue];
     }
 }

@@ -20,14 +20,18 @@
     NSRegularExpression*    regex = [NSRegularExpression regularExpressionWithPattern: optionNamePattern options: 0 error: &err];
     
     if (nil != err) {
+#ifdef DEBUG
         NSLog(@"error creating regular expression with pattern \"%@\": %@", optionNamePattern, err);
+#endif
         return str;
     }
     
     NSTextCheckingResult*   firstMatch = [regex firstMatchInString: str options: 0 range: NSMakeRange(0, [str length])];
     
     if (nil == firstMatch || NSEqualRanges(firstMatch.range, NSMakeRange(NSNotFound, 0))) {
+#ifdef DEBUG
         NSLog(@"cannot extract option name: %@ does not match regular expression: %@", str, regex.pattern);
+#endif
         return str;
     }
     
