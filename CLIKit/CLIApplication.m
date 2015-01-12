@@ -13,6 +13,7 @@
 @interface CLIApplicationOptionParserDelegate : NSObject <CLIOptionParserDelegate>
 
 @property (weak, readonly, nonatomic) CLIApplication* application;
+@property (copy, nonatomic) NSArray *remainingArguments;
 
 - (instancetype)initWithApplication: (CLIApplication*)application;
 
@@ -38,9 +39,7 @@
 }
 
 - (void)optionParser: (CLIOptionParser*)parser didEncounterNonOptionArguments: (NSArray*)remainingArguments {
-    if (nil != self.application.delegate) {
-        [self.application.delegate application: self.application isReadyToBeginExecutingWithRemainingArguments: remainingArguments];
-    }
+    self.remainingArguments = remainingArguments;
 }
 
 @end
@@ -108,7 +107,12 @@
             
             [self.optionParser parseCommandLineArguments: argsFromMain count: argumentCount optionsToRecognize: self.recognizedOptions error: &err];
             
-            if (nil != err) {
+            if (nil == err) {
+                if ([self.delegate respondsToSelector:@selector(application:isReadyToBeginExecutingWithRemainingArguments:)]) {
+                    [self.delegate application:self isReadyToBeginExecutingWithRemainingArguments:self.optionParserDelegate.remainingArguments];
+                }
+
+            } else {
                 [self.delegate application: self didFailOptionParsingWithError: err];
             }
         }
