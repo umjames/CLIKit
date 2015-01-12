@@ -134,6 +134,43 @@
     return [self.usageMessageGenerator generateUsageMessage];
 }
 
+- (void)writeUseageMessage {
+    NSString *usage = [self generateUsageMessage];
+    [self writeStdErrorString:[NSString stringWithFormat:@"%@%@", usage ?: @"", usage ? @"\n" : @""]];
+}
+
+- (void)writeError:(NSError *)error {
+    NSString *errorDesc = [error localizedDescription];
+    [self writeStdErrorString:[NSString stringWithFormat:@"%@%@", errorDesc ?: @"", errorDesc ? @"\n" : @""]];
+}
+
+- (void)writeStdErrorString:(NSString *)string {
+    [self writeString:string isError:YES];
+}
+
+- (void)writeStdOutString:(NSString *)string {
+    [self writeString:string isError:NO];
+}
+
+- (void)writeString:(NSString *)string isError:(BOOL)isError {
+    NSFileHandle *fileHandle = isError ? self.standardError : self.standardOutput;
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    
+    if (data) {
+        @try {
+            [fileHandle writeData:data];
+        }
+        @catch (NSException *exception) {
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Could not write '%@' to %@. Exception: %@", nil), string, isError ? @"stderr" : @"stdout", exception];
+            if (isError) {
+                NSLog(@"%@", message);
+            } else {
+                [self writeString:message isError:YES];
+            }
+        }
+    }
+}
+
 - (void)ensureRecognizedOptions {
     if (nil == self.recognizedOptions) {
         if (nil != self.delegate) {
