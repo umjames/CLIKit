@@ -134,6 +134,41 @@
     return [self.usageMessageGenerator generateUsageMessage];
 }
 
+- (void)writeUseageMessage {
+    [self writeStdErrorString:[self generateUsageMessage]];
+}
+
+- (void)writeError:(NSError *)error {
+    [self writeStdErrorString:[error localizedDescription]];
+}
+
+- (void)writeStdErrorString:(NSString *)string {
+    [self writeString:string isError:YES];
+}
+
+- (void)writeStdOutString:(NSString *)string {
+    [self writeString:string isError:NO];
+}
+
+- (void)writeString:(NSString *)string isError:(BOOL)isError {
+    NSFileHandle *fileHandle = isError ? self.standardError : self.standardOutput;
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    
+    if (data) {
+        @try {
+            [fileHandle writeData:data];
+        }
+        @catch (NSException *exception) {
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Could not write '%@' to %@. Exception: %@", nil), string, isError ? @"stderr" : @"stdout", exception];
+            if (isError) {
+                NSLog(@"%@", message);
+            } else {
+                [self writeString:message isError:YES];
+            }
+        }
+    }
+}
+
 - (void)ensureRecognizedOptions {
     if (nil == self.recognizedOptions) {
         if (nil != self.delegate) {
