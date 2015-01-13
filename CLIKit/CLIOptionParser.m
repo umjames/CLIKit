@@ -171,7 +171,7 @@ NSString* const CLIMultipleErrorsKey = @"CLIMultipleErrorsKey";
 }
 
 - (void)processMissingRequiredArgumentForOption: (CLIOption*)option {
-    NSError* error = [NSError errorWithDomain: CLIKitErrorDomain code: kCLIMissingRequiredArgument userInfo: @{ NSLocalizedDescriptionKey: [NSString stringWithFormat: @"option %@ is missing a required argument", option.optionName], CLIOptionNameKey: option.optionName }];
+    NSError* error = [NSError errorWithDomain: CLIKitErrorDomain code: kCLIMissingRequiredArgument userInfo: @{ NSLocalizedDescriptionKey: [NSString stringWithFormat: @"option %@ is missing a required argument", option.optionName], CLIOptionNameKey: option.optionName ?: [NSNull null] }];
     
     [self.errorCollector addError: error];
     
