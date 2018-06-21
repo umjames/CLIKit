@@ -134,21 +134,21 @@
     return [self.usageMessageGenerator generateUsageMessage];
 }
 
-- (void)writeUseageMessage {
+- (void)writeUsageMessageToStandardError {
     NSString *usage = [self generateUsageMessage];
-    [self writeStdErrorString:[NSString stringWithFormat:@"%@%@", usage ?: @"", usage ? @"\n" : @""]];
+    [self writeToStandardError:[NSString stringWithFormat:@"%@%@", usage ?: @"", usage ? @"\n" : @""]];
 }
 
 - (void)writeError:(NSError *)error {
     NSString *errorDesc = [error localizedDescription];
-    [self writeStdErrorString:[NSString stringWithFormat:@"%@%@", errorDesc ?: @"", errorDesc ? @"\n" : @""]];
+    [self writeToStandardError:[NSString stringWithFormat:@"%@%@", errorDesc ?: @"", errorDesc ? @"\n" : @""]];
 }
 
-- (void)writeStdErrorString:(NSString *)string {
+- (void)writeToStandardError:(NSString *)string {
     [self writeString:string isError:YES];
 }
 
-- (void)writeStdOutString:(NSString *)string {
+- (void)writeToStandardOutput:(NSString *)string {
     [self writeString:string isError:NO];
 }
 
