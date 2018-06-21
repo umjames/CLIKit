@@ -143,7 +143,7 @@
 /**
  * Writes the usage message returned by `generateUsageMessage` to stderr.
  */
-- (void)writeUseageMessage;
+- (void)writeUsageMessageToStandardError;
 
 /**
  * Writes the localized description from the given error to stderr.
@@ -164,7 +164,7 @@
  *
  * @param string The string to write to standard out.
  */
-- (void)writeStdOutString:(NSString *)string;
+- (void)writeToStandardOutput:(NSString *)string;
 
 @end
 
