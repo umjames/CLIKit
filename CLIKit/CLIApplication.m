@@ -21,7 +21,7 @@
 
 @implementation CLIApplicationOptionParserDelegate
 
-@synthesize application, remainingArguments;
+@synthesize application;
 
 - (instancetype)initWithApplication: (CLIApplication*)theApplication {
     if (self = [super init]) {
