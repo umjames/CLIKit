@@ -21,11 +21,12 @@
 
 @implementation CLIApplicationOptionParserDelegate
 
-@synthesize application;
+@synthesize application, remainingArguments;
 
 - (instancetype)initWithApplication: (CLIApplication*)theApplication {
     if (self = [super init]) {
         application = theApplication;
+        remainingArguments = @[];
         return self;
     }
     
@@ -40,6 +41,12 @@
 
 - (void)optionParser: (CLIOptionParser*)parser didEncounterNonOptionArguments: (NSArray*)remainingArguments {
     self.remainingArguments = remainingArguments;
+}
+
+- (void)optionParserDidFinishParsing: (CLIOptionParser*)parser {
+    if (nil != self.application.delegate) {
+        [self.application.delegate application: self.application isReadyToBeginExecutingWithRemainingArguments: self.remainingArguments];
+    }
 }
 
 @end

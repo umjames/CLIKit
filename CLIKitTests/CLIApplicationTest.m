@@ -144,6 +144,29 @@ static id mockDelegateForCLIApplicationMain = nil;
     free((char**)commandlineArgs);
 }
 
+- (void)testDelegateMethodsOnSuccessfulApplicationRun_optionsOnly {
+    NSArray* options = @[ [CLIOption shortOptionWithName: @"v" canHaveArgument: NO thatIsRequired: NO aliases: @[@"version"]],
+                          [CLIOption shortOptionWithName: @"h" canHaveArgument: NO thatIsRequired: NO aliases: @[@"help"]] ];
+    
+    id delegate = [self mockDelegateWithRecognizedOptions: options];
+    
+    _application.delegate = delegate;
+    
+    OCMExpect([delegate applicationWillBeginRunning: _application]);
+    OCMExpect([delegate application: _application didEncounterOptionWithName: @"h" argument: nil]);
+    OCMExpect([delegate application: _application isReadyToBeginExecutingWithRemainingArguments: @[]]);
+    OCMExpect([delegate applicationWillEndRunning: _application]);
+    
+    char* const* commandlineArgs = [self argvForString: @"progname -h"];
+    
+    [_application runWithCommandlineArguments: commandlineArgs count: 2];
+    XCTAssertEqual(0, _application.exitCode);
+    
+    OCMVerifyAll(delegate);
+    
+    free((char**)commandlineArgs);
+}
+
 - (void)testDelegateMethodsOnFailingApplicationRun {
     NSArray* options = @[ [CLIOption shortOptionWithName: @"v" canHaveArgument: NO thatIsRequired: NO aliases: @[@"version"]],
                           [CLIOption shortOptionWithName: @"o" canHaveArgument: YES thatIsRequired: YES aliases: @[@"output"]] ];
