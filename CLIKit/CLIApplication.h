@@ -140,6 +140,32 @@
  */
 - (NSString*)generateUsageMessage;
 
+/**
+ * Writes the usage message returned by `generateUsageMessage` to stderr.
+ */
+- (void)writeUsageMessageToStandardError;
+
+/**
+ * Writes the localized description from the given error to stderr.
+ *
+ * @param error The error whose localized description to write to standard error.
+ */
+- (void)writeError:(NSError *)error;
+
+/**
+ * Write a given string to stderr.
+ *
+ * @param string The string to write to standard error.
+ */
+- (void)writeStdErrorString:(NSString *)string;
+
+/**
+ * Write a given string to stdout.
+ *
+ * @param string The string to write to standard out.
+ */
+- (void)writeToStandardOutput:(NSString *)string;
+
 @end
 
 /**

@@ -13,7 +13,7 @@
 @interface CLIApplicationOptionParserDelegate : NSObject <CLIOptionParserDelegate>
 
 @property (weak, readonly, nonatomic) CLIApplication* application;
-@property (strong, nonatomic) NSArray* remainingArguments;
+@property (copy, nonatomic) NSArray *remainingArguments;
 
 - (instancetype)initWithApplication: (CLIApplication*)application;
 
@@ -21,7 +21,7 @@
 
 @implementation CLIApplicationOptionParserDelegate
 
-@synthesize application, remainingArguments;
+@synthesize application;
 
 - (instancetype)initWithApplication: (CLIApplication*)theApplication {
     if (self = [super init]) {
@@ -39,8 +39,8 @@
     }
 }
 
-- (void)optionParser: (CLIOptionParser*)parser didEncounterNonOptionArguments: (NSArray*)theRemainingArguments {
-    self.remainingArguments = theRemainingArguments;
+- (void)optionParser: (CLIOptionParser*)parser didEncounterNonOptionArguments: (NSArray*)remainingArguments {
+    self.remainingArguments = remainingArguments;
 }
 
 - (void)optionParserDidFinishParsing: (CLIOptionParser*)parser {
@@ -114,7 +114,12 @@
             
             [self.optionParser parseCommandLineArguments: argsFromMain count: argumentCount optionsToRecognize: self.recognizedOptions error: &err];
             
-            if (nil != err) {
+            if (nil == err) {
+                if ([self.delegate respondsToSelector:@selector(application:isReadyToBeginExecutingWithRemainingArguments:)]) {
+                    [self.delegate application:self isReadyToBeginExecutingWithRemainingArguments:self.optionParserDelegate.remainingArguments];
+                }
+
+            } else {
                 [self.delegate application: self didFailOptionParsingWithError: err];
             }
         }
@@ -138,6 +143,43 @@
     }
     
     return [self.usageMessageGenerator generateUsageMessage];
+}
+
+- (void)writeUsageMessageToStandardError {
+    NSString *usage = [self generateUsageMessage];
+    [self writeToStandardError:[NSString stringWithFormat:@"%@%@", usage ?: @"", usage ? @"\n" : @""]];
+}
+
+- (void)writeError:(NSError *)error {
+    NSString *errorDesc = [error localizedDescription];
+    [self writeToStandardError:[NSString stringWithFormat:@"%@%@", errorDesc ?: @"", errorDesc ? @"\n" : @""]];
+}
+
+- (void)writeToStandardError:(NSString *)string {
+    [self writeString:string isError:YES];
+}
+
+- (void)writeToStandardOutput:(NSString *)string {
+    [self writeString:string isError:NO];
+}
+
+- (void)writeString:(NSString *)string isError:(BOOL)isError {
+    NSFileHandle *fileHandle = isError ? self.standardError : self.standardOutput;
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    
+    if (data) {
+        @try {
+            [fileHandle writeData:data];
+        }
+        @catch (NSException *exception) {
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Could not write '%@' to %@. Exception: %@", nil), string, isError ? @"stderr" : @"stdout", exception];
+            if (isError) {
+                NSLog(@"%@", message);
+            } else {
+                [self writeString:message isError:YES];
+            }
+        }
+    }
 }
 
 - (void)ensureRecognizedOptions {
